@@ -1,0 +1,45 @@
+{
+  "name": "Tomorrow.io Weather API",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "Postman.postman-for-vscode",
+        "evidence.sqltools-duckdb-driver",
+        "mtxr.sqltools"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.provider": "black"
+      }
+    }
+  },
+  
+  "postCreateCommand": "pip install --upgrade pip && pip install requests python-dotenv pandas numpy duckdb pyarrow dlt[duckdb] sqlalchemy",
+  
+  "forwardPorts": [8000, 3000],
+  
+  "remoteEnv": {
+    "TOMORROW_API_KEY": "${localEnv:TOMORROW_API_KEY}"
+  },
+  
+  "mounts": [
+    "source=${localEnv:HOME}/.tomorrow_api,target=/home/vscode/.tomorrow_api,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/data,target=/workspace/data,type=bind"
+  ],
+  
+  "remoteUser": "vscode"
+}
