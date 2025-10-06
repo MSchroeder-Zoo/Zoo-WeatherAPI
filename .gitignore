@@ -1,0 +1,13 @@
+# Enviro Variables (API key)
+.env
+
+# Duckdb database files
+*.Duckdb
+*.Duckdb.wal
+
+#dlt state files
+.dlt/
+
+# Python cache
+__pycache__/
+*.pyc
