@@ -16,7 +16,7 @@
         "ms-python.vscode-pylance",
         "ms-toolsai.jupyter",
         "Postman.postman-for-vscode",
-        "evidence.sqltools-duckdb-driver",
+        "RandomFractalsInc.duckdb-sql-tools",
         "mtxr.sqltools"
       ],
       "settings": {
