@@ -10,3 +10,5 @@ Run HistoricalWeatherAnalysis.py
 
 Navigate to SQLTools and reestablish connection with Weather Data duckdb database.  
 
+After you connect the database, you will not be able to execute either the 'query_weather.py' or 'HistoricalWeatherAnalysis.py' scripts.  
+^^^Looking for fix^^^
