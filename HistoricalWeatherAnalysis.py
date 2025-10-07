@@ -81,7 +81,7 @@ pipeline = dlt.pipeline(
 
 if __name__ == "__main__":
     try:
-        info = pipeline.run(weather_realtime(), table_name='weather.Weather_data')
+        info = pipeline.run(weather_realtime(), table_name='weather.weather_data')
         print(f"Loaded realtime: {info}")
 
     #info = pipeline.run(weather_forecast())
