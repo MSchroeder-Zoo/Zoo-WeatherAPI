@@ -2,8 +2,8 @@
 .env
 
 # Duckdb database files
-*.Duckdb
-*.Duckdb.wal
+*.duckdb
+*.duckdb.wal
 
 #dlt state files
 .dlt/

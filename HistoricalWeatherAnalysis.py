@@ -3,6 +3,7 @@ from dlt.sources.helpers import requests
 from datetime import datetime, timedelta
 import os
 from dotenv import load_dotenv
+import duckdb
 
 load_dotenv()
 
@@ -20,12 +21,18 @@ def weather_realtime():
     """Fetch current weather data from Tomorrow.io"""
     url = "https://api.tomorrow.io/v4/weather/realtime"
 
+    headers = {
+        "content-type": "application/json",
+        "apikey": f'{API_KEY}'
+        
+    }
+
     params = {
-        "apikey": API_KEY,
+        #"apikey": API_KEY,
         "location": LOCATION,
         "units": "imperial"
     }
-    response = requests.get(url, params=params)
+    response = requests.get(url, params=params, headers=headers)
     response.raise_for_status()
 
     data = response.json()
@@ -43,17 +50,14 @@ def weather_realtime():
 def weather_forecast():
     """Fetch weather forcast from Tomorrow.io"""
     url = "https://api.tomorrow.io/v4/weather/forecast"
-
     params = {
         "apikey": API_KEY,
         "location": LOCATION,
         "timesteps": "1h",
         "units": "imperial"
     }
-
     response = requests.get(url, params=params)
     response.raise_for_status()
-
     data = response.json()
 
 
@@ -72,15 +76,21 @@ pipeline = dlt.pipeline(
     pipeline_name="tomorrow_zoo_weather",
     destination="duckdb",
     dataset_name="weather",
-    dev_mode=True #set to false when completed matthew i swear to god.
+    dev_mode=False, 
 )
 
 if __name__ == "__main__":
-    info = pipeline.run(weather_realtime())
-    print(f"Loaded {info}")
+    try:
+        info = pipeline.run(weather_realtime(), table_name='weather.Weather_data')
+        print(f"Loaded realtime: {info}")
 
-    info = pipeline.run(weather_forecast())
-    print(f"Loaded {info}")
+    #info = pipeline.run(weather_forecast())
+    #print(f"Loaded {info}")
 
-    print(f"\nData loaded to: {pipeline.dataset_name}")
-    print(f"Database location: {pipeline.pipeline_name}.duckdb")
+        print(f"\nData loaded to: {pipeline.dataset_name}")
+        print(f"Database location: {pipeline.pipeline_name}.duckdb")
+
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        import traceback
+        traceback.print_exc()

@@ -28,7 +28,7 @@
     }
   },
   
-  "postCreateCommand": "pip install --upgrade pip && pip install requests python-dotenv pandas numpy duckdb pyarrow dlt[duckdb] sqlalchemy",
+  "postCreateCommand": "pip install --upgrade pip && pip install requests python-dotenv pandas numpy 'duckdb==0.10.2' pyarrow 'dlt[duckdb]' sqlalchemy",
   
   "forwardPorts": [8000, 3000],
   
