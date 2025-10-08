@@ -17,7 +17,8 @@
         "ms-toolsai.jupyter",
         "Postman.postman-for-vscode",
         "RandomFractalsInc.duckdb-sql-tools",
-        "mtxr.sqltools"
+        "mtxr.sqltools",
+        "ms-azuretools.vscode-containers"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
@@ -28,7 +29,8 @@
     }
   },
   
-  "postCreateCommand": "pip install --upgrade pip && pip install requests python-dotenv pandas numpy 'duckdb==0.10.2' pyarrow 'dlt[duckdb]' sqlalchemy && npm install duckdb-async@0.10.2",
+  "postCreateCommand": "pip install --upgrade pip && pip install requests python-dotenv pandas numpy 'duckdb==0.10.2' pyarrow 'dlt[duckdb]' sqlalchemy",
+  "postStartCommand": "npm install duckdb-async@0.10.2",
   
   "forwardPorts": [8000, 3000],
   
