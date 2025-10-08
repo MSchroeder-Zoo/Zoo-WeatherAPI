@@ -4,11 +4,13 @@ Weather API reporting for the STL Zoo
 
 # On clean start-up: ##  
 
-Create .env file with API_KEY='your api key'  
+Add API key to .env file.  
 
 Run HistoricalWeatherAnalysis.py  
 
 Navigate to SQLTools and reestablish connection with Weather Data duckdb database.  
+You will be prompted to download duckdbasync0.10.2 --> select install, it already is installed but it doesn't recognize it idk.  
 
-After you connect the database, you will not be able to execute either the 'query_weather.py' or 'HistoricalWeatherAnalysis.py' scripts.  
+After you connect the database, you will not be able to execute the 'HistoricalWeatherAnalysis.py' script again.  
+To refresh the weather data you will need to start a new codespace.  
 ^^^Looking for fix^^^
